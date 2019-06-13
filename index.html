@@ -56,7 +56,45 @@
     const leadboard = document.querySelector('#scores');
     const scores = document.querySelector('#scores');
     const nick = document.querySelector('#nick');
-
+    var dziura = 0;
+    var points = 0;
+    var czas = 0;
+    var clicable = true;
+    var pDziura = 0
+    function randomTime(min,max){return (min + Math.round(Math.random() * max-min));}
+    function wysunKreta(){
+      while(e === pDziura){
+      var e = Math.round(Math.random() * holes.length - 1);}
+      pDziura = e;
+      return holes[e];
+    }
+    function dodajKlase(klasa,rzecz){
+      rzecz.classList.add(klasa);
+    }
+    function dodajKlase1(){dodajKlase('up',dziura)}
+    function odejmijKlase(klasa,rzecz){
+      rzecz.classList.remove(klasa);
+    }
+    function odejmijKlase1(){odejmijKlase('up',dziura)}
+    function peep(){
+      clicable = true;
+      dziura = wysunKreta();
+      dodajKlase('up',dziura);
+      czas = randomTime(9000,10000);
+      setTimeout(odejmijKlase1,czas);
+      czas = 0;
+      peep();
+    }
+    function cos(){
+      if(!clicable){return;}
+    console.log(event.target);
+    points++;
+    odejmijKlase('up',dziura);
+    czas = 0;
+    scoreBoard.innerText = points;
+    clicable = false;
+    }
+      moles.forEach((mole) => mole.addEventListener('click',cos));
   </script>
 </body>
 
